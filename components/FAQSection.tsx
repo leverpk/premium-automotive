@@ -11,8 +11,8 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-ink py-28 sm:py-40">
-      <div className="section-shell grid gap-12 border-t border-ice/12 pt-10 lg:grid-cols-[0.75fr_1.25fr]">
+    <section className="bg-ink py-20 sm:py-28">
+      <div className="section-shell grid gap-10 border-t border-ice/12 pt-9 lg:grid-cols-[0.75fr_1.25fr]">
         <div>
           <p className="eyebrow">FAQ</p>
           <h2 className="display-heading mt-5 text-5xl leading-[0.95] sm:text-7xl">

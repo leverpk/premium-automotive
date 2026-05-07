@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -10,7 +10,7 @@ export function HeroSection() {
   const headline = "Silent velocity, drawn in graphite.";
   const words = headline.split(" ");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
@@ -58,6 +58,8 @@ export function HeroSection() {
         }
       }
     }, rootRef);
+
+    ScrollTrigger.refresh();
 
     return () => ctx.revert();
   }, []);

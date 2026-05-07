@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,7 +11,7 @@ type SectionRevealProps = {
 export function SectionReveal({ children }: SectionRevealProps) {
   const rootRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
@@ -33,6 +33,8 @@ export function SectionReveal({ children }: SectionRevealProps) {
         }
       );
     }, rootRef);
+
+    ScrollTrigger.refresh();
 
     return () => ctx.revert();
   }, []);

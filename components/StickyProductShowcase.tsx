@@ -17,7 +17,7 @@ export function StickyProductShowcase() {
   const scale = useTransform(scrollYProgress, [0.1, 0.55, 0.9], [0.92, 1, 0.96]);
 
   return (
-    <section id="showcase" ref={ref} className="bg-[linear-gradient(180deg,#060708,#101214_50%,#060708)] py-28 sm:py-44">
+    <section id="showcase" ref={ref} className="bg-[linear-gradient(180deg,#060708,#101214_50%,#060708)] py-24 sm:py-32">
       <div className="section-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
         <div className="lg:sticky lg:top-28">
           <p className="eyebrow">Product showcase</p>
@@ -27,7 +27,7 @@ export function StickyProductShowcase() {
           <p className="editorial-copy mt-7 max-w-md">
             A sticky product stage gives the grand tourer the stillness of a studio campaign while specifications accumulate with quiet precision.
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-px border-y border-ice/12 bg-ice/12">
+          <div className="mt-8 grid grid-cols-2 gap-px border-y border-ice/12 bg-ice/12">
             {specs.map(([label, value]) => (
               <div key={label} className="bg-ink/90 p-5">
                 <p className="text-lg font-semibold text-ice">{value}</p>
@@ -36,7 +36,7 @@ export function StickyProductShowcase() {
             ))}
           </div>
         </div>
-        <motion.div style={{ scale }} className="overflow-hidden border border-ice/12 bg-ink shadow-2xl shadow-black/50 lg:-mt-16">
+        <motion.div style={{ scale }} className="overflow-hidden border border-ice/12 bg-ink shadow-2xl shadow-black/50 lg:-mt-10">
           <Image
             src="/images/showcase-car.png"
             alt="Premium electric grand tourer side profile"

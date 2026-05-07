@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -25,7 +25,7 @@ const chapters = [
 export function ScrollStorySection() {
   const rootRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.from(".story-card", {
@@ -41,23 +41,25 @@ export function ScrollStorySection() {
       });
     }, rootRef);
 
+    ScrollTrigger.refresh();
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="story" ref={rootRef} className="bg-ink py-28 sm:py-40">
+    <section id="story" ref={rootRef} className="bg-ink py-20 sm:py-28">
       <div className="section-shell">
-        <div className="grid gap-10 border-t border-ice/12 pt-10 lg:grid-cols-[0.42fr_0.58fr]">
+        <div className="grid gap-8 border-t border-ice/12 pt-9 lg:grid-cols-[0.42fr_0.58fr]">
           <p className="eyebrow">Scroll story</p>
           <h2 className="display-heading text-5xl leading-[0.96] sm:text-7xl">
             A campaign cadence, paced like the first drive after midnight.
           </h2>
         </div>
-        <div className="mt-16 grid gap-px bg-ice/12 md:grid-cols-[1.05fr_0.85fr_1.1fr]">
+        <div className="mt-12 grid gap-px bg-ice/12 md:grid-cols-[1.05fr_0.85fr_1.1fr]">
           {chapters.map((chapter, index) => (
-            <article key={chapter.title} className={`story-card bg-midnight p-7 transition hover:-translate-y-1 hover:bg-graphite sm:p-9 ${index === 1 ? "md:mt-12" : ""}`}>
+            <article key={chapter.title} className={`story-card bg-midnight p-7 transition hover:-translate-y-1 hover:bg-graphite sm:p-9 ${index === 1 ? "md:mt-8" : ""}`}>
               <p className="text-sm font-bold text-electric">{chapter.label}</p>
-              <h3 className="mt-12 text-2xl font-semibold text-ice">{chapter.title}</h3>
+              <h3 className="mt-10 text-2xl font-semibold text-ice">{chapter.title}</h3>
               <p className="editorial-copy mt-4">{chapter.text}</p>
             </article>
           ))}

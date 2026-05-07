@@ -15,6 +15,16 @@ export function GlobalMotion() {
     const smallScreen = window.matchMedia("(max-width: 640px)").matches;
     let lenis: Lenis | undefined;
     let frame = 0;
+    let refreshFrame = 0;
+
+    const refreshScroll = () => {
+      if (refreshFrame) cancelAnimationFrame(refreshFrame);
+
+      refreshFrame = requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        updateProgress();
+      });
+    };
 
     const updateProgress = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -24,6 +34,9 @@ export function GlobalMotion() {
 
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("load", refreshScroll);
+    window.addEventListener("resize", refreshScroll);
+    window.addEventListener("orientationchange", refreshScroll);
 
     if (!reduceMotion && !smallScreen) {
       lenis = new Lenis({
@@ -38,13 +51,35 @@ export function GlobalMotion() {
         frame = requestAnimationFrame(raf);
       };
 
-      lenis.on("scroll", ScrollTrigger.update);
+      lenis.on("scroll", () => {
+        ScrollTrigger.update();
+        updateProgress();
+      });
       frame = requestAnimationFrame(raf);
     }
 
+    document.fonts?.ready.then(refreshScroll);
+
+    const images = Array.from(document.images);
+    images.forEach((image) => {
+      if (image.complete) return;
+      image.addEventListener("load", refreshScroll, { once: true });
+      image.addEventListener("error", refreshScroll, { once: true });
+    });
+
+    refreshScroll();
+
     return () => {
       window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("load", refreshScroll);
+      window.removeEventListener("resize", refreshScroll);
+      window.removeEventListener("orientationchange", refreshScroll);
+      images.forEach((image) => {
+        image.removeEventListener("load", refreshScroll);
+        image.removeEventListener("error", refreshScroll);
+      });
       if (frame) cancelAnimationFrame(frame);
+      if (refreshFrame) cancelAnimationFrame(refreshFrame);
       lenis?.destroy();
     };
   }, []);

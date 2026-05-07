@@ -14,9 +14,9 @@ const features = [
 
 export function FeaturesGrid() {
   return (
-    <section className="bg-ink py-28 sm:py-40">
+    <section className="bg-ink py-20 sm:py-28">
       <div className="section-shell">
-        <div className="grid gap-8 border-t border-ice/12 pt-10 md:grid-cols-[1fr_0.62fr] md:items-end">
+        <div className="grid gap-8 border-t border-ice/12 pt-9 md:grid-cols-[1fr_0.62fr] md:items-end">
           <div>
             <p className="eyebrow">Interactive detail</p>
             <h2 className="display-heading mt-5 text-5xl leading-none sm:text-7xl">Digital restraint, physical desire.</h2>
@@ -25,7 +25,7 @@ export function FeaturesGrid() {
             Hover states stay tactile and precise, revealing systems thinking without turning the campaign into a tech demo.
           </p>
         </div>
-        <div className="mt-14 grid gap-px bg-ice/12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-11 grid gap-px bg-ice/12 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => {
             return (
               <FeatureCard
