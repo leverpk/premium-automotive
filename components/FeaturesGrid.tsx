@@ -14,18 +14,18 @@ const features = [
 
 export function FeaturesGrid() {
   return (
-    <section className="bg-ink py-24 sm:py-32">
+    <section className="bg-ink py-28 sm:py-40">
       <div className="section-shell">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="grid gap-8 border-t border-ice/12 pt-10 md:grid-cols-[1fr_0.62fr] md:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-electric">Interactive cards</p>
-            <h2 className="mt-4 font-[var(--font-display)] text-4xl text-white sm:text-6xl">Digital detail, physical desire.</h2>
+            <p className="eyebrow">Interactive detail</p>
+            <h2 className="display-heading mt-5 text-5xl leading-none sm:text-7xl">Digital restraint, physical desire.</h2>
           </div>
-          <p className="max-w-md leading-7 text-white/58">
-            Hover states and restrained motion create a premium interface rhythm without turning the page into noise.
+          <p className="editorial-copy max-w-md md:justify-self-end">
+            Hover states stay tactile and precise, revealing systems thinking without turning the campaign into a tech demo.
           </p>
         </div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-px bg-ice/12 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => {
             return (
               <FeatureCard

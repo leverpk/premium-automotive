@@ -52,7 +52,7 @@ export function GlobalMotion() {
   return (
     <div
       ref={progressRef}
-      className="fixed inset-x-0 top-0 z-[70] h-1 origin-left scale-x-[var(--scroll-progress,0)] bg-electric shadow-[0_0_24px_rgba(0,163,255,0.75)]"
+      className="fixed inset-x-0 top-0 z-[70] h-px origin-left scale-x-[var(--scroll-progress,0)] bg-electric"
       aria-hidden="true"
     />
   );

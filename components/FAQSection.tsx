@@ -11,15 +11,15 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-ink py-24 sm:py-32">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+    <section className="bg-ink py-28 sm:py-40">
+      <div className="section-shell grid gap-12 border-t border-ice/12 pt-10 lg:grid-cols-[0.75fr_1.25fr]">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-electric">FAQ</p>
-          <h2 className="mt-4 font-[var(--font-display)] text-4xl leading-tight text-white sm:text-6xl">
+          <p className="eyebrow">FAQ</p>
+          <h2 className="display-heading mt-5 text-5xl leading-[0.95] sm:text-7xl">
             Practical answers, premium delivery.
           </h2>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-px bg-ice/12">
           {faqs.map(([question, answer], index) => (
             <motion.details
               key={question}
@@ -27,12 +27,12 @@ export function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.05 }}
-              className="group border border-white/10 bg-white/[0.035] p-6 open:border-electric/50 open:bg-electric/10"
+              className="group bg-midnight p-6 open:bg-graphite"
             >
-              <summary className="cursor-pointer list-none text-lg font-semibold text-white">
+              <summary className="cursor-pointer list-none text-lg font-semibold text-ice">
                 {question}
               </summary>
-              <p className="mt-4 leading-7 text-white/60">{answer}</p>
+              <p className="mt-4 leading-7 text-ice/60">{answer}</p>
             </motion.details>
           ))}
         </div>

@@ -11,13 +11,15 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section id="process" className="bg-ink py-24 sm:py-32">
+    <section id="process" className="bg-ink py-28 sm:py-40">
       <div className="section-shell">
-        <p className="text-xs font-semibold uppercase tracking-[0.32em] text-electric">Process</p>
-        <h2 className="mt-4 max-w-3xl font-[var(--font-display)] text-4xl leading-tight text-white sm:text-6xl">
-          From showroom emotion to production-ready interface.
-        </h2>
-        <div className="mt-14 divide-y divide-white/10 border-y border-white/10">
+        <div className="grid gap-8 border-t border-ice/12 pt-10 lg:grid-cols-[0.34fr_0.66fr]">
+          <p className="eyebrow">Process</p>
+          <h2 className="display-heading max-w-4xl text-5xl leading-[0.95] sm:text-7xl">
+            From showroom emotion to production-ready interface.
+          </h2>
+        </div>
+        <div className="mt-16 divide-y divide-ice/10 border-y border-ice/12">
           {steps.map(([number, title, text], index) => (
             <motion.article
               key={title}
@@ -25,11 +27,11 @@ export function ProcessSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.06 }}
-              className="grid gap-4 py-8 md:grid-cols-[120px_0.55fr_1fr] md:items-center"
+              className="grid gap-5 py-9 md:grid-cols-[120px_0.55fr_1fr] md:items-center"
             >
-              <span className="text-sm font-semibold text-electric">{number}</span>
-              <h3 className="text-2xl font-semibold text-white">{title}</h3>
-              <p className="leading-7 text-white/58">{text}</p>
+              <span className="text-sm font-bold text-electric">{number}</span>
+              <h3 className="text-2xl font-semibold text-ice">{title}</h3>
+              <p className="leading-7 text-ice/58">{text}</p>
             </motion.article>
           ))}
         </div>

@@ -8,17 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#06101f",
-        midnight: "#07182f",
-        graphite: "#101722",
-        ice: "#f7fbff",
-        electric: "#00a3ff"
+        ink: "#060708",
+        midnight: "#0d0e10",
+        graphite: "#17191c",
+        ice: "#f4f1ea",
+        electric: "#b8a06a",
+        lacquer: "#111316",
+        steel: "#9da4a9"
       },
       boxShadow: {
-        glow: "0 0 48px rgba(0, 163, 255, 0.25)"
+        glow: "0 18px 70px rgba(0, 0, 0, 0.48)"
       },
       backgroundImage: {
-        "radial-blue": "radial-gradient(circle at 50% 0%, rgba(0, 163, 255, 0.22), transparent 36%)"
+        "radial-blue": "linear-gradient(135deg, rgba(244, 241, 234, 0.08), rgba(184, 160, 106, 0.10) 36%, rgba(6, 7, 8, 0.92))"
       }
     }
   },

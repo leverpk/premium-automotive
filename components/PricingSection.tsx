@@ -27,15 +27,15 @@ const tiers = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="bg-[linear-gradient(180deg,#06101f,#07182f)] py-24 sm:py-32">
+    <section id="pricing" className="bg-[linear-gradient(180deg,#060708,#111316)] py-28 sm:py-40">
       <div className="section-shell">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-electric">Pricing</p>
-          <h2 className="mt-4 font-[var(--font-display)] text-4xl leading-tight text-white sm:text-6xl">
-            Packages for premium launches.
+        <div className="grid gap-8 border-t border-ice/12 pt-10 md:grid-cols-[0.4fr_0.6fr]">
+          <p className="eyebrow">Pricing</p>
+          <h2 className="display-heading text-5xl leading-[0.95] sm:text-7xl">
+            Launch packages with room for ceremony.
           </h2>
         </div>
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+        <div className="mt-14 grid gap-px bg-ice/12 lg:grid-cols-3">
           {tiers.map((tier, index) => (
             <motion.article
               key={tier.name}
@@ -43,15 +43,15 @@ export function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: index * 0.08 }}
-              className={`border p-7 ${tier.featured ? "border-electric bg-electric/10 shadow-glow" : "border-white/10 bg-white/[0.035]"}`}
+              className={`p-8 ${tier.featured ? "bg-ice text-ink" : "bg-midnight text-ice"}`}
             >
-              <h3 className="text-xl font-semibold text-white">{tier.name}</h3>
-              <p className="mt-5 text-4xl font-semibold text-white">{tier.price}</p>
-              <p className="mt-5 min-h-20 leading-7 text-white/58">{tier.copy}</p>
+              <h3 className={`text-xl font-semibold ${tier.featured ? "text-ink" : "text-ice"}`}>{tier.name}</h3>
+              <p className={`mt-6 text-4xl font-semibold ${tier.featured ? "text-ink" : "text-ice"}`}>{tier.price}</p>
+              <p className={`mt-6 min-h-20 leading-7 ${tier.featured ? "text-ink/64" : "text-ice/58"}`}>{tier.copy}</p>
               <ul className="mt-8 space-y-4">
                 {tier.items.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-white/72">
-                    <Check className="mt-0.5 h-4 w-4 flex-none text-electric" />
+                  <li key={item} className={`flex gap-3 text-sm ${tier.featured ? "text-ink/72" : "text-ice/72"}`}>
+                    <Check className={`mt-0.5 h-4 w-4 flex-none ${tier.featured ? "text-ink" : "text-electric"}`} />
                     {item}
                   </li>
                 ))}

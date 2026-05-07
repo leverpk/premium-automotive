@@ -45,20 +45,20 @@ export function ScrollStorySection() {
   }, []);
 
   return (
-    <section id="story" ref={rootRef} className="bg-ink py-24 sm:py-32">
+    <section id="story" ref={rootRef} className="bg-ink py-28 sm:py-40">
       <div className="section-shell">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-electric">Scroll story</p>
-          <h2 className="mt-4 font-[var(--font-display)] text-4xl leading-tight text-white sm:text-6xl">
-            Built as a launch narrative, not a static page.
+        <div className="grid gap-10 border-t border-ice/12 pt-10 lg:grid-cols-[0.42fr_0.58fr]">
+          <p className="eyebrow">Scroll story</p>
+          <h2 className="display-heading text-5xl leading-[0.96] sm:text-7xl">
+            A campaign cadence, paced like the first drive after midnight.
           </h2>
         </div>
-        <div className="mt-14 grid gap-4 md:grid-cols-3">
-          {chapters.map((chapter) => (
-            <article key={chapter.title} className="story-card border border-white/10 bg-white/[0.035] p-7 transition hover:-translate-y-1 hover:border-electric/60 hover:bg-electric/10">
-              <p className="text-sm font-semibold text-electric">{chapter.label}</p>
-              <h3 className="mt-9 text-2xl font-semibold text-white">{chapter.title}</h3>
-              <p className="mt-4 leading-7 text-white/58">{chapter.text}</p>
+        <div className="mt-16 grid gap-px bg-ice/12 md:grid-cols-[1.05fr_0.85fr_1.1fr]">
+          {chapters.map((chapter, index) => (
+            <article key={chapter.title} className={`story-card bg-midnight p-7 transition hover:-translate-y-1 hover:bg-graphite sm:p-9 ${index === 1 ? "md:mt-12" : ""}`}>
+              <p className="text-sm font-bold text-electric">{chapter.label}</p>
+              <h3 className="mt-12 text-2xl font-semibold text-ice">{chapter.title}</h3>
+              <p className="editorial-copy mt-4">{chapter.text}</p>
             </article>
           ))}
         </div>
