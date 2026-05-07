@@ -24,19 +24,27 @@ const chapters = [
 
 export function ScrollStorySection() {
   const rootRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      gsap.from(".story-card", {
-        y: 72,
-        opacity: 0,
+      const cards = gsap.utils.toArray<HTMLElement>(".story-card");
+
+      gsap.fromTo(cards, {
+        y: 56,
+        autoAlpha: 0
+      }, {
+        y: 0,
+        autoAlpha: 1,
         stagger: 0.18,
-        duration: 0.9,
+        duration: 0.8,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: {
-          trigger: rootRef.current,
-          start: "top 70%"
+          trigger: cardsRef.current,
+          start: "top 88%",
+          once: true
         }
       });
     }, rootRef);
@@ -55,7 +63,7 @@ export function ScrollStorySection() {
             A campaign cadence, paced like the first drive after midnight.
           </h2>
         </div>
-        <div className="mt-12 grid gap-px bg-ice/12 md:grid-cols-[1.05fr_0.85fr_1.1fr]">
+        <div ref={cardsRef} className="mt-12 grid gap-px bg-ice/12 md:grid-cols-[1.05fr_0.85fr_1.1fr]">
           {chapters.map((chapter, index) => (
             <article key={chapter.title} className={`story-card bg-midnight p-7 transition hover:-translate-y-1 hover:bg-graphite sm:p-9 ${index === 1 ? "md:mt-8" : ""}`}>
               <p className="text-sm font-bold text-electric">{chapter.label}</p>
