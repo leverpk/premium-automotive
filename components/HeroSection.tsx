@@ -7,8 +7,8 @@ import Image from "next/image";
 
 export function HeroSection() {
   const rootRef = useRef<HTMLElement>(null);
-  const headline = "Silent velocity, drawn in graphite.";
-  const words = headline.split(" ");
+  const headlineLines = ["Built for the road.", "Designed for the cabin."];
+  const headline = headlineLines.join(" ");
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -17,25 +17,25 @@ export function HeroSection() {
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const desktop = window.matchMedia("(min-width: 641px)").matches;
 
-      gsap.set("[data-hero-word]", { yPercent: reduceMotion ? 0 : 115, opacity: reduceMotion ? 1 : 0 });
+      gsap.set("[data-hero-line]", { yPercent: reduceMotion ? 0 : 118, opacity: reduceMotion ? 1 : 0 });
       gsap.set("[data-hero-fade]", { y: reduceMotion ? 0 : 18, opacity: reduceMotion ? 1 : 0 });
       gsap.set("[data-hero-cta]", { y: reduceMotion ? 0 : 18, opacity: reduceMotion ? 1 : 0 });
 
       if (!reduceMotion) {
         gsap.timeline({ defaults: { ease: "power4.out" } })
-          .to("[data-hero-word]", {
+          .to("[data-hero-line]", {
             yPercent: 0,
             opacity: 1,
-            stagger: 0.055,
-            duration: 0.9
+            stagger: 0.16,
+            duration: 1.05
           })
-          .to("[data-hero-fade]", { y: 0, opacity: 1, duration: 0.75 }, "-=0.35")
+          .to("[data-hero-fade]", { y: 0, opacity: 1, stagger: 0.08, duration: 0.75 }, "-=0.45")
           .to("[data-hero-cta]", { y: 0, opacity: 1, stagger: 0.08, duration: 0.65 }, "-=0.35");
 
         if (desktop) {
           gsap.to("[data-hero-image]", {
             yPercent: 8,
-            scale: 1.05,
+            scale: 1.04,
             ease: "none",
             scrollTrigger: {
               trigger: rootRef.current,
@@ -65,70 +65,70 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section ref={rootRef} className="relative min-h-screen overflow-hidden bg-ink pt-24">
+    <section ref={rootRef} className="relative min-h-[100svh] overflow-hidden bg-ink pt-20 sm:pt-24">
       <div data-hero-image className="absolute inset-0">
         <Image
           src="/images/hero-car.png"
-          alt="Premium electric grand tourer in a cinematic dark studio"
+          alt="Premium automotive interior protection in a cinematic vehicle cabin campaign"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[63%_center] sm:object-center"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#060708_0%,rgba(6,7,8,0.88)_30%,rgba(6,7,8,0.12)_72%),linear-gradient(180deg,rgba(6,7,8,0.24)_0%,rgba(6,7,8,0.16)_52%,#060708_96%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#060708_0%,rgba(6,7,8,0.90)_35%,rgba(6,7,8,0.28)_68%,rgba(6,7,8,0.52)_100%),linear-gradient(180deg,rgba(6,7,8,0.18)_0%,rgba(6,7,8,0.10)_46%,#060708_98%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(244,241,234,0.10),transparent_30%),linear-gradient(180deg,transparent_0%,rgba(6,7,8,0.32)_100%)]" />
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-px bg-ice/18" />
-      <div data-hero-copy className="section-shell relative z-10 grid min-h-[calc(100vh-6rem)] items-center lg:grid-cols-[0.78fr_0.22fr]">
-        <div className="max-w-[780px] pb-24 pt-10">
+      <div data-hero-copy className="section-shell relative z-10 grid min-h-[calc(100svh-5rem)] items-end pb-32 pt-12 sm:min-h-[calc(100vh-6rem)] sm:items-center sm:pb-36 lg:grid-cols-[0.78fr_0.22fr]">
+        <div className="max-w-[920px]">
           <p
             data-hero-fade
-            className="eyebrow mb-6"
+            className="eyebrow mb-5 sm:mb-7"
           >
-            Electric grand touring
+            PREMIUM AUTOMOTIVE INTERIORS
           </p>
           <h1
             aria-label={headline}
-            className="display-heading text-6xl leading-[0.86] sm:text-8xl lg:text-[8.8rem]"
+            className="display-heading text-[clamp(4.5rem,19vw,7.2rem)] leading-[0.82] sm:text-[clamp(6.8rem,11vw,10.5rem)] lg:text-[10.2rem]"
           >
-            {words.map((word, index) => (
-              <span key={`${word}-${index}`} className="inline-block overflow-hidden align-bottom">
-                <span data-hero-word className="inline-block will-change-transform">
-                  {word}
+            {headlineLines.map((line) => (
+              <span key={line} className="block overflow-hidden pb-[0.08em]">
+                <span data-hero-line className="block will-change-transform">
+                  {line}
                 </span>
-                {index < words.length - 1 ? "\u00a0" : null}
               </span>
             ))}
           </h1>
           <p
             data-hero-fade
-            className="editorial-copy mt-8 max-w-xl text-base sm:text-lg"
+            className="editorial-copy mt-7 max-w-2xl text-base leading-8 text-ice/72 sm:mt-8 sm:text-lg sm:leading-9"
           >
-            A restrained launch experience built around surface, silence, and the rare confidence of a machine that does not need to announce itself.
+            Precision-fit automotive protection with a cleaner silhouette, stronger durability and a premium daily driving experience.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a data-hero-cta href="#showcase" className="bg-ice px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-electric hover:text-ink">
-              Explore showcase
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a data-hero-cta href="#showcase" className="bg-ice px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-electric hover:text-ink sm:px-8">
+              Explore the product
             </a>
-            <a data-hero-cta href="#story" className="border border-ice/18 px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ice transition hover:border-electric hover:bg-ice/5">
-              View narrative
+            <a data-hero-cta href="#story" className="border border-ice/18 px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-ice/78 transition hover:border-electric hover:bg-ice/5 hover:text-ice sm:px-8">
+              View details
             </a>
           </div>
         </div>
-        <div data-hero-fade className="hidden self-end pb-36 text-right lg:block">
-          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-ice/42">Private reveal</p>
-          <p className="mt-4 text-sm leading-7 text-ice/58">Milano studio<br />2026 campaign</p>
+        <div data-hero-fade className="hidden self-end pb-10 text-right lg:block">
+          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-ice/42">2026 campaign</p>
+          <p className="mt-4 text-sm leading-7 text-ice/58">Precision cabin fit<br />daily-grade durability</p>
         </div>
       </div>
-      <div className="section-shell relative z-10 -mt-28 grid grid-cols-3 gap-px border-y border-ice/14 bg-ice/12 text-left backdrop-blur-xl sm:max-w-3xl sm:ml-[max(18px,calc((100vw-1240px)/2))]">
+      <div className="section-shell relative z-10 -mt-24 grid grid-cols-3 gap-px border-y border-ice/14 bg-ice/12 text-left backdrop-blur-xl sm:-mt-28 sm:max-w-3xl sm:ml-[max(18px,calc((100vw-1240px)/2))]">
         {[
-          ["2.7s", "0-100 km/h"],
-          ["790km", "Range"],
-          ["920hp", "Dual motor"]
+          ["01", "Precision fit"],
+          ["02", "Cleaner profile"],
+          ["03", "Daily durability"]
         ].map(([value, label]) => (
-          <div key={label} className="bg-ink/76 px-4 py-5 sm:px-6">
-            <p className="text-2xl font-semibold text-ice">{value}</p>
-            <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ice/46">{label}</p>
+          <div key={label} className="bg-ink/76 px-3 py-4 sm:px-6 sm:py-5">
+            <p className="text-xl font-semibold text-electric sm:text-2xl">{value}</p>
+            <p className="mt-2 text-[9px] uppercase tracking-[0.18em] text-ice/52 sm:text-[10px] sm:tracking-[0.22em]">{label}</p>
           </div>
         ))}
       </div>
