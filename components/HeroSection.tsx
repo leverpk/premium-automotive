@@ -84,16 +84,16 @@ export function HeroSection() {
         <div className="max-w-[920px]">
           <p
             data-hero-fade
-            className="eyebrow mb-5 sm:mb-7"
+            className="eyebrow mb-6 sm:mb-8"
           >
             PREMIUM AUTOMOTIVE INTERIORS
           </p>
           <h1
             aria-label={headline}
-            className="display-heading text-[clamp(4.5rem,19vw,7.2rem)] leading-[0.82] sm:text-[clamp(6.8rem,11vw,10.5rem)] lg:text-[10.2rem]"
+            className="display-heading flex flex-col gap-2 text-[clamp(4.15rem,17vw,7rem)] leading-[0.88] sm:gap-3 sm:text-[clamp(6.4rem,10.4vw,10rem)] sm:leading-[0.86] lg:gap-4 lg:text-[10rem]"
           >
             {headlineLines.map((line) => (
-              <span key={line} className="block overflow-hidden pb-[0.08em]">
+              <span key={line} className="block overflow-hidden pb-[0.1em]">
                 <span data-hero-line className="block will-change-transform">
                   {line}
                 </span>
@@ -102,15 +102,15 @@ export function HeroSection() {
           </h1>
           <p
             data-hero-fade
-            className="editorial-copy mt-7 max-w-2xl text-base leading-8 text-ice/72 sm:mt-8 sm:text-lg sm:leading-9"
+            className="editorial-copy mt-8 max-w-2xl text-base leading-8 text-ice/72 sm:mt-10 sm:text-lg sm:leading-9"
           >
             Precision-fit automotive protection with a cleaner silhouette, stronger durability and a premium daily driving experience.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a data-hero-cta href="#showcase" className="bg-ice px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-electric hover:text-ink sm:px-8">
+          <div className="mt-10 flex flex-col gap-4 sm:mt-11 sm:flex-row sm:items-center sm:gap-5">
+            <a data-hero-cta href="#showcase" className="bg-ice px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-ink transition hover:bg-electric hover:text-ink sm:px-9">
               Explore the product
             </a>
-            <a data-hero-cta href="#story" className="border border-ice/18 px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-ice/78 transition hover:border-electric hover:bg-ice/5 hover:text-ice sm:px-8">
+            <a data-hero-cta href="#story" className="border border-ice/18 px-7 py-4 text-center text-sm font-bold uppercase tracking-[0.16em] text-ice/78 transition hover:border-electric hover:bg-ice/5 hover:text-ice sm:px-9">
               View details
             </a>
           </div>
